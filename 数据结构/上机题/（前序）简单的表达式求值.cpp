@@ -158,7 +158,7 @@ void change(char *str)     //中序转前序（空格隔开每个元素）
 
 double cal(char * str)
 {
-    char NumStr[20] = {0},tmp;          //即将入栈的数字字符串
+    char NumStr[20] = {0};          //即将入栈的数字字符串
 	double a = 0,b = 0,result = 0;
 	Stack NumStack;//数字栈
 
