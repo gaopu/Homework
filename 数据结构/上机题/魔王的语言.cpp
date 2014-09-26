@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
                 if (k != count) {
                     strcat(tmp,mowang[k].right);
                 } else {
-                    cout<"对应关系有问题，魔王的语言词汇没有对应的人类语言";
+                    cout<<"对应关系有问题，魔王的语言词汇没有对应的人类语言";
                     exit(1);
                 }
                 change = true;
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
                 strcat(PeopleLanguage,mowang[k].right);
                 j = strlen(PeopleLanguage);
             } else {
-                cout<"对应关系有问题，魔王的语言词汇没有对应的人类语言";
+                cout<<"对应关系有问题，魔王的语言词汇没有对应的人类语言";
                 exit(1);
             }
         } else {
