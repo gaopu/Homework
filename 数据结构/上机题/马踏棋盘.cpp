@@ -1,4 +1,4 @@
-//注意，只能windows下运行
+//注意，只能windows下运行!
 
 #include <iostream>
 #include <windows.h>
