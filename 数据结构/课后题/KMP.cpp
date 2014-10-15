@@ -50,6 +50,13 @@ int find(char *str1,int index,char *str2)
     int j = 0;//指str2
 
     get_next(str2,next);
+    cout<<"next数组：";
+    for (int k = 1;k <= strlen(str2);k++)
+    {
+        cout<<next[k]<<" ";
+    }
+    cout<<"\n";
+    
     for (;i < strlen(str1) && j < strlen(str2);)
     {
         if (str1[i] == str2[j]) {
