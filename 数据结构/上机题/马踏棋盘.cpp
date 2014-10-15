@@ -6,8 +6,8 @@
 using namespace std;
 const int length = 8;
 const int width  = 8;//棋盘的长宽
-const Htry1[] = {-2,-1,1,2,2,1,-1,-2};//x坐标变化
-const Htry2[] = {1,2,2,1,-1,-2,-2,-1};//y坐标变化
+const int Htry1[] = {-2,-1,1,2,2,1,-1,-2};//x坐标变化
+const int Htry2[] = {1,2,2,1,-1,-2,-2,-1};//y坐标变化
 int ChessBoard[8][8] = {0};//未走过的地方是0
 int WalkNum = 1;
 int back = 0;//回溯的次数
