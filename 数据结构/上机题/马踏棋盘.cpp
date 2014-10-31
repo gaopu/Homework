@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <windows.h>
- 
+
 using namespace std;
 const int length = 8;
 const int width  = 8;//棋盘的长宽
@@ -11,18 +11,18 @@ const int Htry2[] = {1,2,2,1,-1,-2,-2,-1};//y坐标变化
 int ChessBoard[8][8] = {0};//未走过的地方是0
 int WalkNum = 1;
 int back = 0;//回溯的次数
- 
+
 void HorseWalk(int x,int y);//参数是起始位置
 void gotoxy(short x,short y);//移动光标位置
- 
+
 int main()
 {
     int x = 0,y = 0;
     int i = 0;
- 
+
     cout<<"请输入起始位置"<<"(棋盘尺寸"<<length<<"*"<<width<<")：";
     cin>>x>>y;
- 
+
     for(i = 0;i < length;i++)
     {
         gotoxy(3 * (i + 1),1);
@@ -33,12 +33,12 @@ int main()
         gotoxy(0,i + 2);
         printf("%3d",i);
     }
- 
+
     HorseWalk(x,y);
- 
+
     return 0 ;
 }
- 
+
 void HorseWalk(int x,int y)
 {
     int i = 0,j = 0;
@@ -48,7 +48,7 @@ void HorseWalk(int x,int y)
     int RoadNum[8]= {0};//下一步八个位置各自的可走路数
     int NextRoad[8] = {0};//存储下一个位置应该走八个位置中的哪个(上面定义的路的下标)，按照可走路数由少到多排序
     int Road = 0;//单个点的路数
- 
+
     if ((x >= 0 && x <= length - 1) && (y >= 0 && y <= width - 1) && !ChessBoard[x][y]) {
         ChessBoard[x][y] = WalkNum++;
         gotoxy(3 * (y + 1),x + 2);//CMD的x和y和数组中的x，y是相反的，这个3时因为以%3d打印了，1是因为CMD最上面有1行提示语句
@@ -62,9 +62,9 @@ void HorseWalk(int x,int y)
     } else {
         return ;
     }
- 
+
     //计算下一步八个位置各自的可走路数
-    for (i = 0;i < 8;i++) 
+    for (i = 0;i < 8;i++)
     {
         Road = 0;
         m = x + Htry1[i];
@@ -81,14 +81,14 @@ void HorseWalk(int x,int y)
         }
         RoadNum[i] = Road;
     }
- 
+
     //存储该走的路数xy搭配的数组的下标
     gotoxy(0,width + 2);
     for (j = 0;j < 8;j++)
     {
         NextRoad[j] = j;
     }
- 
+
     for (i = 1;i <= 7;i++)
     {
         for (j = 0;j < 8 - i;j++)
@@ -97,32 +97,32 @@ void HorseWalk(int x,int y)
                 tmp = RoadNum[j + 1];
                 RoadNum[j + 1] = RoadNum[j];
                 RoadNum[j] = tmp;
- 
+
                 tmp = NextRoad[j + 1];
                 NextRoad[j + 1] = NextRoad[j];
                 NextRoad[j] = tmp;
             }
         }
     }
- 
+
     for (i = 0;i < 8;i++)
     {
         if (RoadNum[i] > 0) {
             break;
         }
     }
- 
+
     for (;i < 8;i++) {
         HorseWalk(x + Htry1[NextRoad[i]],y + Htry2[NextRoad[i]]);
     }
- 
+
     ChessBoard[x][y] = 0;
     WalkNum--;
     gotoxy(3 * (y + 1),x + 2);//移动到当前的位置
     printf("   ");//输出三个空格，消除刚才的字
     back++;
 }
- 
+
 void gotoxy(short x,short y)
 {
     COORD coord;

@@ -1,6 +1,6 @@
-//非递归实现
 #include <iostream>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -9,24 +9,27 @@ const ElemType NullValue = '#';
 typedef struct BiTreeNode
 {
     ElemType data;
+	int level;
     BiTreeNode *lchild,*rchild;
 }BiTree;
 
-void CreatTree(BiTree ** root);
+void CreatTree(BiTree ** root,int level);
 void FirstPrint(BiTree * root);
 void MidPrint(BiTree * root);
 void LastPrint(BiTree * root);
+void CengPrint(BiTree * root);
 
 int main()
 {
     BiTree *t;
 
-    CreatTree(&t);
-    MidPrint(t);
+    CreatTree(&t,1);
+    CengPrint(t);
     cout<<endl;
+	return 0;
 }
 
-void CreatTree(BiTree ** root)
+void CreatTree(BiTree ** root,int level)
 {
     ElemType data;
 
@@ -36,8 +39,9 @@ void CreatTree(BiTree ** root)
     } else {
         *root = new BiTree;
         (*root)->data = data;
-        CreatTree(&(*root)->lchild);
-        CreatTree(&(*root)->rchild);
+		(*root)->level = level;
+        CreatTree(&(*root)->lchild,level + 1);
+        CreatTree(&(*root)->rchild,level + 1);
     }
 }
 
@@ -78,4 +82,31 @@ void MidPrint(BiTree * node)
 void LastPrint(BiTree * root)
 {
 
+}
+
+void CengPrint(BiTree * root)
+{
+	queue<BiTree *> q;
+	BiTree * t = NULL;
+	int prolevel = 0;
+
+	if (root) {
+		q.push(root);
+	}
+
+	while (!q.empty()) {
+		t = q.front();
+		if (t->level > prolevel) {
+			cout<<endl;
+		}
+		cout<<t->data<<" ";
+		prolevel = t->level;
+		q.pop();
+		if (t->lchild) {
+			q.push(t->lchild);
+		}
+		if (t->rchild) {
+			q.push(t->rchild);
+		}
+	}
 }
