@@ -6,7 +6,6 @@ using namespace std;
 int main()
 {
     map<string,string> m;
-    int i;
     m.insert(pair<string,string>("澳大利亚","西班牙"));
     m.insert(pair<string,string>("荷兰","智利"));
     m.insert(pair<string,string>("喀麦隆","巴西"));
