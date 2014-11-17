@@ -62,9 +62,11 @@ void AdjMatrix::BFSTraverse() {
         visited[i] = 0;
     }
 
+    int count = 1;
     cout<<"广度优先搜索：";
     for (int i = 0;i < vexnum;i++) {
         if (!visited[i]) {
+            cout<<"第"<<count++<<"次调用BFS：";
             BFS(i);
         }
     }
@@ -96,9 +98,11 @@ void AdjMatrix::DFSTraverse() {
         visited[i] = 0;
     }
 
+    int count = 1;
     cout<<"深度优先搜索：";
     for (int i = 0;i < vexnum;i++) {
         if (!visited[i]) {
+            cout<<"第"<<count++<<"次调用DFS：";
             DFS(i);
         }
     }
