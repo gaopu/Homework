@@ -23,6 +23,8 @@ public:
     void BFSTraverse();
     void DFS(int v);
     void BFS(int v);
+    void InDegree();
+    void OutDegree();
     friend ostream & operator<<(ostream & os,const AdjMatrix & t);
 };
 
@@ -128,7 +130,7 @@ ostream & operator<<(ostream & os, const AdjMatrix & t) {
     os<<endl;
 
     for (i = 0;i < t.vexnum;i++) {
-        os<<right;
+        os<<left;
         os<< setw(space)<<t.vex[i];
         for (j = 0;j < t.vexnum;j++) {
             os<<right;
@@ -142,6 +144,34 @@ ostream & operator<<(ostream & os, const AdjMatrix & t) {
         os<<endl;
     }
     return os;
+}
+
+void AdjMatrix::InDegree() {
+    cout<<"入度：";
+    for (int i =0; i < vexnum;i++) {
+        int count = 0;
+        for (int j =0;j < vexnum;j++) {
+            if (arcs[j][i] != MAXNUM) {
+                count++;
+            }
+        }
+        cout<<"("<<vex[i]<<","<<count<<") ";
+    }
+    cout<<endl;
+}
+
+void AdjMatrix::OutDegree() {
+    cout<<"出度：";
+    for (int i =0; i < vexnum;i++) {
+        int count = 0;
+        for (int j =0;j < vexnum;j++) {
+            if (arcs[i][j] != MAXNUM) {
+                count++;
+            }
+        }
+        cout<<"("<<vex[i]<<","<<count<<") ";
+    }
+    cout<<endl;
 }
 
 int main()
@@ -158,6 +188,8 @@ int main()
     cout<<t;
     t.DFSTraverse();
     t.BFSTraverse();
+    t.InDegree();
+    t.OutDegree();
 
     return 0;
 }
