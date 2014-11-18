@@ -59,7 +59,7 @@ void AdjMatrix::Input() {
 
 void AdjMatrix::BFSTraverse() {
     for (int i = 0;i < vexnum;i++) {
-        visited[i] = 0;
+        visited[i] = false;
     }
 
     int count = 1;
@@ -77,7 +77,7 @@ void AdjMatrix::BFS(int v) {
     queue<int> q;
     int t;
 
-    visited[v] = 1;
+    visited[v] = true;
     cout<<vex[v]<<" ";
     q.push(v);
     while (!q.empty()) {
@@ -85,7 +85,7 @@ void AdjMatrix::BFS(int v) {
         q.pop();
         for (int i = 0;i < vexnum;i++) {
             if (arcs[t][i] != MAXNUM && !visited[i]) {
-                visited[i] = 1;
+                visited[i] = true;
                 cout<<vex[i]<<" ";
                 q.push(i);
             }
@@ -95,7 +95,7 @@ void AdjMatrix::BFS(int v) {
 
 void AdjMatrix::DFSTraverse() {
     for (int i = 0;i < vexnum;i++) {
-        visited[i] = 0;
+        visited[i] = false;
     }
 
     int count = 1;
@@ -111,7 +111,7 @@ void AdjMatrix::DFSTraverse() {
 
 void AdjMatrix::DFS(int v) {
     cout<<vex[v]<<" ";
-    visited[v] = 1;
+    visited[v] = true;
 
     int i;
     for (i = 0;i < vexnum && (arcs[v][i] == MAXNUM || visited[i]);i++);
